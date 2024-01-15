@@ -10,11 +10,12 @@ from fast_jtnn import *
 import rdkit
 
 def tensorize(smiles, assm=True):
-    mol_tree = MolTree(smiles)
+    mol_tree = MolTree(smiles)              #class MolTree in ./fast_jtnn/mol_tree.py => use function in ./fast_jtnn/chemutils.py
     mol_tree.recover()
     if assm:
         mol_tree.assemble()
         for node in mol_tree.nodes:
+            print()
             if node.label not in node.cands:
                 node.cands.append(node.label)
 
@@ -45,7 +46,7 @@ if __name__ == "__main__":
 
     le = (len(all_data) + num_splits - 1) / num_splits
 
-    for split_id in xrange(num_splits):
+    for split_id in range(num_splits):
         st = split_id * le
         sub_data = all_data[st : st + le]
 
